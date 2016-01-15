@@ -1,0 +1,37 @@
+{
+  "name": "oh-hai",
+  "version": "1.0.0",
+  "description": "Chat API using pusher",
+  "main": "server.js",
+  "dependencies": {
+    "convict": "^1.0.2",
+    "hapi": "^12.1.0",
+    "hapi-and-healthy": "^4.3.0",
+    "hapi-auth-jwt2": "^5.3.2",
+    "hapi-swagger": "^3.1.1",
+    "inert": "^3.2.0",
+    "lodash": "^4.0.0",
+    "mongo": "^0.1.0",
+    "pusher": "^1.1.0",
+    "vision": "^4.0.1",
+    "xss": "^0.2.10"
+  },
+  "devDependencies": {
+    "code": "^2.1.0",
+    "lab": "^8.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sabind/oh-hai.git"
+  },
+  "keywords": [
+    "API",
+    "CHAT",
+    "PUSHER"
+  ],
+  "author": "Dan Sabin <dan.sabin@gmail.com>",
+  "license": "UNLICENSED"
+}
