@@ -1,0 +1,24 @@
+{
+  "name": "oh-hai",
+  "description": "Chat API using pusher",
+  "main": "server.js",
+  "authors": [
+    "Dan Sabin <dan.sabin@gmail.com>"
+  ],
+  "license": "UNLICENSED",
+  "keywords": [
+    "API",
+    "CHAT",
+    "PUSHER"
+  ],
+  "homepage": "https://github.com/sabind/oh-hai",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

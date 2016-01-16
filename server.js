@@ -1,6 +1,7 @@
 'use strict';
 
 var Hapi = require('hapi');
+var Hoek = require('hoek');
 var config = require('./config/config');
 var pjson = require('./package.json');
 
@@ -67,38 +68,45 @@ var healthyOptions = {
 var plugins = [
   {register: require('inert')},
   {register: require('vision')},
+  {register: require('./routes/ui/homePage')},
   {register: require('good'), options: goodOptions},
   {register: require('hapi-swagger'), options: swaggerOptions},
   {register: require('hapi-and-healthy'), options: healthyOptions}
 ];
 
-server.register(require('hapi-auth-jwt2'), function (err) {
-  if (err) {
-    console.err(err);
-  } else {
-    if (!module.parent) {
-      require('./clients/mongodb');
-    }
+server.register(require('hapi-auth-jwt2'), function (authError) {
+  Hoek.assert(!authError, authError);
 
-    server.auth.strategy('user', 'jwt', 'optional', {
-      key: config.get('jwtKey'),
-      validateFunc: require('./utils/jwt').validateUser,
-      verifyOptions: { algorithms: [ 'HS256' ] }
-    });
-
-    server.register(plugins, function (err) {
-      if (err) {
-        console.error(err);
-      }
-      else {
-        if (!module.parent) {
-          server.start(function () {
-            console.info('Server started at ' + server.info.uri);
-          });
-        }
-      }
-    });
+  if (!module.parent) {
+    require('./clients/mongodb');
   }
+
+  server.auth.strategy('user', 'jwt', 'optional', {
+    key: config.get('jwtKey'),
+    validateFunc: require('./utils/jwt').validateUser,
+    verifyOptions: {algorithms: ['HS256']}
+  });
+
+  server.register(plugins, function (err) {
+    Hoek.assert(!err, err);
+
+    server.views({
+      engines: {
+        html: require('handlebars')
+      },
+      path: 'views',
+      layoutPath: 'views/layout',
+      layout: 'default',
+      helpersPath: 'views/helpers',
+      partialsPath: 'views/partials'
+    });
+
+    if (!module.parent) {
+      server.start(function () {
+        console.info('Server started at ' + server.info.uri);
+      });
+    }
+  });
 });
 
 module.exports = server;
