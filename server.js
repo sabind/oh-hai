@@ -68,6 +68,7 @@ var healthyOptions = {
 var plugins = [
   {register: require('inert')},
   {register: require('vision')},
+  {register: require('./routes/public')},
   {register: require('./routes/ui/homePage')},
   {register: require('good'), options: goodOptions},
   {register: require('hapi-swagger'), options: swaggerOptions},

@@ -5,6 +5,7 @@
   "authors": [
     "Dan Sabin <dan.sabin@gmail.com>"
   ],
+  "directory": "public/components/",
   "license": "UNLICENSED",
   "keywords": [
     "API",
@@ -17,8 +18,12 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
+    "public/components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap": "4.0",
+    "tether": "~1.1.1"
+  }
 }
