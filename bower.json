@@ -23,6 +23,7 @@
     "tests"
   ],
   "dependencies": {
-    "tether": "~1.1.1"
+    "tether": "~1.1.1",
+    "jquery": "~2.2.0"
   }
 }
