@@ -23,7 +23,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "4.0",
     "tether": "~1.1.1"
   }
 }
