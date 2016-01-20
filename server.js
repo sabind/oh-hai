@@ -70,6 +70,8 @@ var plugins = [
   {register: require('vision')},
   {register: require('./routes/public')},
   {register: require('./routes/ui/homePage')},
+  {register: require('./routes/ui/about')},
+  {register: require('./routes/ui/help')},
   {register: require('good'), options: goodOptions},
   {register: require('hapi-swagger'), options: swaggerOptions},
   {register: require('hapi-and-healthy'), options: healthyOptions}
