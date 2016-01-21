@@ -1,0 +1,29 @@
+{
+  "name": "oh-hai",
+  "description": "Chat API using pusher",
+  "main": "server.js",
+  "authors": [
+    "Dan Sabin <dan.sabin@gmail.com>"
+  ],
+  "directory": "public/components/",
+  "license": "UNLICENSED",
+  "keywords": [
+    "API",
+    "CHAT",
+    "PUSHER"
+  ],
+  "homepage": "https://github.com/sabind/oh-hai",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tether": "~1.1.1",
+    "jquery": "~2.2.0"
+  }
+}
