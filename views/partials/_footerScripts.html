@@ -1,4 +1,12 @@
-<script src="/public/components/jquery/dist/jquery.min.js"></script>
 <script src="/public/components/tether/dist/js/tether.min.js"></script>
 <script src="/public/javascripts/application/toolkit.min.js"></script>
-<script src="https://cdn.socket.io/socket.io-1.4.3.js"></script>
+<script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+{{#notProduction}}
+<script>
+    Pusher.log = function (message) {
+        if (window.console && window.console.log) {
+            window.console.log(message);
+        }
+    };
+</script>
+{{/notProduction}}

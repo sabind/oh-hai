@@ -31,6 +31,26 @@ var conf = convict({
     format: '*',
     default: '',
     env: 'JWT_KEY'
+  },
+  pusher: {
+    id: {
+      doc: 'The Pusher App Id',
+      format: '*',
+      default: '172819',
+      env: 'PUSHER_APP_ID'
+    },
+    key: {
+      doc: 'The Pusher App Key',
+      format: '*',
+      default: '3a3c2397786ded7d42aa',
+      env: 'PUSHER_APP_KEY'
+    },
+    secret: {
+      doc: 'The Pusher App Secret',
+      format: '*',
+      default: '5391e23d34dd374e708b',
+      env: 'PUSHER_APP_SECRET'
+    }
   }
 });
 

@@ -1,8 +1,13 @@
 var Pusher = require('pusher');
 var config = require('../config/config');
 
-modules.export = new Pusher({
-  appId: config.get('pusher').get('appId'),
-  key: config.get('pusher').get('appKey'),
-  secret: config.get('pusher').get('appSecret')
+var pusher = new Pusher({
+  appId: config.get('pusher').id,
+  key: config.get('pusher').key,
+  secret: config.get('pusher').secret,
+  encrypted: true
 });
+
+pusher.port = 443;
+
+module.exports = pusher;
