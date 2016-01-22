@@ -72,6 +72,7 @@ var plugins = [
   {register: require('./routes/ui/homePage')},
   {register: require('./routes/ui/about')},
   {register: require('./routes/ui/help')},
+  {register: require('./routes/api/messages')},
   {register: require('good'), options: goodOptions},
   {register: require('hapi-swagger'), options: swaggerOptions},
   {register: require('hapi-and-healthy'), options: healthyOptions}
@@ -82,6 +83,7 @@ server.register(require('hapi-auth-jwt2'), function (authError) {
 
   if (!module.parent) {
     require('./clients/mongodb');
+    require('./clients/pusher');
   }
 
   server.auth.strategy('user', 'jwt', 'optional', {
