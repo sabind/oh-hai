@@ -24,7 +24,7 @@ var conf = convict({
     doc: 'The MongoDB URL.',
     format: '*',
     default: 'mongodb://localhost:27017/ohhai',
-    env: 'MONGO_LAB_URL'
+    env: 'MONGOLAB_URI'
   },
   pusher: {
     id: {
