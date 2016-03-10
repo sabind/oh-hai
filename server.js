@@ -69,7 +69,7 @@ var plugins = [
   {register: require('inert')},
   {register: require('vision')},
   {register: require('./routes/public')},
-  {register: require('./routes/ui/homePage')},
+  {register: require('./routes/ui/homepage')},
   {register: require('./routes/ui/about')},
   {register: require('./routes/ui/help')},
   {register: require('./routes/api/authentication')},
