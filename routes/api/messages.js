@@ -3,7 +3,7 @@
 var Joi = require('joi');
 var cors = require('../../utils/cors');
 
-var MessageController = require('../../controllers/api/Message');
+var MessageController = require('../../controllers/api/message');
 var messageValidation = require('../../validations/message');
 
 exports.register = function (server, options, next) {
@@ -15,6 +15,7 @@ exports.register = function (server, options, next) {
       method: 'POST',
       path: '/messages',
       config: {
+        auth: 'session',
         handler: messageController.pushMessage,
         validate: {
           payload: messageValidation.post.required()

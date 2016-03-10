@@ -1,5 +1,4 @@
 'use strict';
-var conf = require('../../config/config');
 
 function HomePageController() {}
 

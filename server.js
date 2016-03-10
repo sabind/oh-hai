@@ -72,24 +72,31 @@ var plugins = [
   {register: require('./routes/ui/homePage')},
   {register: require('./routes/ui/about')},
   {register: require('./routes/ui/help')},
+  {register: require('./routes/api/authentication')},
   {register: require('./routes/api/messages')},
   {register: require('good'), options: goodOptions},
   {register: require('hapi-swagger'), options: swaggerOptions},
   {register: require('hapi-and-healthy'), options: healthyOptions}
 ];
 
-server.register(require('hapi-auth-jwt2'), function (authError) {
-  Hoek.assert(!authError, authError);
+server.register([require('hapi-auth-cookie'), require('bell')], function (err) {
+  Hoek.assert(!err, err);
 
-  if (!module.parent) {
-    require('./clients/mongodb');
-    require('./clients/pusher');
-  }
+  //Setup the session strategy
+  server.auth.strategy('session', 'cookie', {
+    password: 'secret_cookie_encryption_password', //Use something more secure in production
+    cookie: 'session',
+    redirectTo: '/auth/twitter', //If there is no session, redirect here
+    isSecure: false //Should be set to true (which is the default) in production
+  });
 
-  server.auth.strategy('user', 'jwt', 'optional', {
-    key: config.get('jwtKey'),
-    validateFunc: require('./utils/jwt').validateUser,
-    verifyOptions: {algorithms: ['HS256']}
+  //Setup the social Twitter login strategy
+  server.auth.strategy('twitter', 'bell', {
+    provider: 'twitter',
+    password: 'secret_cookie_encryption_password', //Use something more secure in production
+    clientId: '0C2Ag5Tai4mMhYIg6q04iZDs7',
+    clientSecret: 'MfzwYzAtR69y9fjkfsyhTCB0fgCvsZ86qOjsbZTPoYxX3sSbfW',
+    isSecure: false //Should be set to true (which is the default) in production
   });
 
   server.register(plugins, function (err) {
@@ -107,6 +114,9 @@ server.register(require('hapi-auth-jwt2'), function (authError) {
     });
 
     if (!module.parent) {
+      require('./clients/mongodb');
+      require('./clients/pusher');
+
       server.start(function () {
         console.info('Server started at ' + server.info.uri);
       });

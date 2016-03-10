@@ -10,6 +10,7 @@ exports.register = function (server, options, next) {
       method: 'GET',
       path: '/about',
       config: {
+        auth: 'session',
         handler: aboutController.about
       }
     }

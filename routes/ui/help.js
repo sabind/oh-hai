@@ -10,6 +10,7 @@ exports.register = function (server, options, next) {
       method: 'GET',
       path: '/help',
       config: {
+        auth: 'session',
         handler: helpController.help
       }
     }

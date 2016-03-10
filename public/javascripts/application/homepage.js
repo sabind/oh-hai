@@ -13,13 +13,13 @@ $(document).ready(function () {
   channel.bind('chat_message', function (data) {
     var messageHTML = '<li class="media list-group-item">' +
       '<a class="media-left" href="#">' +
-      '<img class="media-object img-circle" src="/public/images/avatar-dhg.png">' +
+      '<img class="media-object img-circle" src="' + data.image + '">' +
       '</a>' +
       '<div class="media-body">' +
       '<div class="media-body-text">' +
       '<div class="media-heading">' +
-      '<small class="pull-right text-muted">12 min</small>' +
-      '<h5>John Doe</h5>' +
+      '<small class="pull-right text-muted">' + moment(data.at).fromNow(Boolean) + '</small>' +
+      '<h5>' + data.name + '</h5>' +
       '</div>' +
       '<p>' +
       data.message +
@@ -32,9 +32,16 @@ $(document).ready(function () {
   });
 
   $sendMessage.click(function () {
-    $.post( "/messages", { room: "chat_room", body: $messageInput.val() })
-      .done(function() {
+    $.post("/messages", {room: "chat_room", body: $messageInput.val()})
+      .done(function () {
         $messageInput.val('');
       });
   })
+});
+
+$.ajaxSetup({
+  crossDomain: true,
+  xhrFields: {
+    withCredentials: true
+  }
 });

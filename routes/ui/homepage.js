@@ -10,6 +10,7 @@ exports.register = function (server, options, next) {
       method: 'GET',
       path: '/',
       config: {
+        auth: 'session',
         handler: homePageController.homePage
       }
     }

@@ -26,12 +26,6 @@ var conf = convict({
     default: 'mongodb://localhost:27017/ohhai',
     env: 'MONGO_LAB_URL'
   },
-  jwtKey: {
-    doc: 'The key for encrypting the JWT',
-    format: '*',
-    default: '',
-    env: 'JWT_KEY'
-  },
   pusher: {
     id: {
       doc: 'The Pusher App Id',
