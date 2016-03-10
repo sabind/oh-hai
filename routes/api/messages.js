@@ -3,7 +3,7 @@
 var Joi = require('joi');
 var cors = require('../../utils/cors');
 
-var MessageController = require('../../controllers/api/message');
+var MessageController = require('../../controllers/api/Message');
 var messageValidation = require('../../validations/message');
 
 exports.register = function (server, options, next) {
